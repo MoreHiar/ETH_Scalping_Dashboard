@@ -47,9 +47,9 @@ function aggregateTrades(trades: FuturesTrade[]): AggregatedTrade[] {
                 currentGroup.push(trade);
             } else {
                 // Finalize the previous group
-                const totalSize = currentGroup.reduce((sum, t) => sum + (t.size ?? 0), 0);
-                const totalValue = currentGroup.reduce((sum, t) => sum + Math.abs(t.size ?? 0) * parseFloat(t.price ?? '0'), 0);
-                const totalAbsSize = currentGroup.reduce((sum, t) => sum + Math.abs(t.size ?? 0), 0);
+                const totalSize = currentGroup.reduce((sum, t) => sum + Number(t.size ?? 0), 0);
+                const totalValue = currentGroup.reduce((sum, t) => sum + Math.abs(Number(t.size ?? 0)) * parseFloat(t.price ?? '0'), 0);
+                const totalAbsSize = currentGroup.reduce((sum, t) => sum + Math.abs(Number(t.size ?? 0)), 0);
                 const avgPrice = totalAbsSize > 0 ? totalValue / totalAbsSize : 0;
                 // Correctly calculate integer MS timestamp from seconds (trade.createTime)
                 const firstTradeTimeSeconds = currentGroup[0].createTime; // Use createTime (seconds)
@@ -77,9 +77,9 @@ function aggregateTrades(trades: FuturesTrade[]): AggregatedTrade[] {
 
      // Finalize the last group
      if (currentGroup.length > 0) {
-        const totalSize = currentGroup.reduce((sum, t) => sum + (t.size ?? 0), 0);
-        const totalValue = currentGroup.reduce((sum, t) => sum + Math.abs(t.size ?? 0) * parseFloat(t.price ?? '0'), 0);
-        const totalAbsSize = currentGroup.reduce((sum, t) => sum + Math.abs(t.size ?? 0), 0);
+        const totalSize = currentGroup.reduce((sum, t) => sum + Number(t.size ?? 0), 0);
+        const totalValue = currentGroup.reduce((sum, t) => sum + Math.abs(Number(t.size ?? 0)) * parseFloat(t.price ?? '0'), 0);
+        const totalAbsSize = currentGroup.reduce((sum, t) => sum + Math.abs(Number(t.size ?? 0)), 0);
         const avgPrice = totalAbsSize > 0 ? totalValue / totalAbsSize : 0;
         // Correctly calculate integer MS timestamp from seconds (trade.createTime)
         const firstTradeTimeSeconds = currentGroup[0].createTime; // Use createTime (seconds)
