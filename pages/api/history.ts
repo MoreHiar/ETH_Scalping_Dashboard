@@ -108,9 +108,7 @@ export default function HistoryPage() {
 
   return (
     <div className="min-h-screen py-8 px-4">
-      <Head>
         <title>信号与交易历史 - ETH Scalping 策略助手</title>
-      </Head>
       <main className="max-w-7xl mx-auto space-y-8"> {/* Wider container */}
         <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-gray-100">📊 信号与交易历史</h1>
